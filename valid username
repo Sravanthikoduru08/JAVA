@@ -1,0 +1,15 @@
+import java.util.Scanner;
+public class username{
+    public static void main(String args[]){
+        Scanner input=new Scanner(System.in);
+        System.out.print("enter the username1:");
+        String i1=input.next();
+        System.out.print("enter the username2:");
+        String i2=input.next();
+        if(i1.equals(i2)){
+            System.out.print("valid");
+        } else {
+            System.out.print("invalid");
+        }
+    }
+          }
