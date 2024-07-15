@@ -1,0 +1,20 @@
+public class Animal {
+    public void move() {
+        System.out.println("This animal moves...");
+    }
+
+    public static void main(String[] args) {
+        Animal myAnimal = new Animal();
+        myAnimal.move();
+
+        Cheetah myCheetah = new Cheetah();
+        myCheetah.move();
+    }
+}
+
+class Cheetah extends Animal {
+    @Override
+    public void move() {
+        System.out.println("The cheetah runs ");
+    }
+}
