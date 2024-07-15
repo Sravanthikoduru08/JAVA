@@ -1,0 +1,27 @@
+class shape{
+    public void area(){
+        System.out.println("shape has area");
+    }
+     public void perimeter(){
+        System.out.println("shape has perimeter");
+     }
+}
+class circle extends shape{
+    public void area(int a){
+        double c=3.14*a*a;
+     System.out.println("circle area= "+c);
+
+        }
+         public void perimeter(int r){
+             double c=3.14*r*2;
+             System.out.println("circle perimeter= "+c);
+}
+        
+}
+public class main{
+    public static void main(String[] args){
+        circle c1=new circle();
+        c1.area(3);
+        c1.perimeter(3);
+    }
+}
