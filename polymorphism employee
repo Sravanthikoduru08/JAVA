@@ -1,0 +1,45 @@
+abstract class Employee {
+    abstract double calculateSalary();
+}
+
+class Manager extends Employee {
+    private double baseSalary;
+    private double bonus;
+
+    Manager(double baseSalary, double bonus) {
+        this.baseSalary = baseSalary;
+        this.bonus = bonus;
+    }
+
+    @Override
+    double calculateSalary() {
+        return baseSalary + bonus;
+    }
+}
+
+class Programmer extends Employee {
+    private double baseSalary;
+    private double overtimePay;
+    private int overtimeHours;
+
+    Programmer(double baseSalary, double overtimePay, int overtimeHours) {
+        this.baseSalary = baseSalary;
+        this.overtimePay = overtimePay;
+        this.overtimeHours = overtimeHours;
+    }
+
+    @Override
+    double calculateSalary() {
+        return baseSalary + (overtimePay * overtimeHours);
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Employee manager = new Manager(60000, 2000);
+        Employee programmer = new Programmer(90000, 50, 10);
+
+        System.out.println("Salary of Manager: " + manager.calculateSalary());
+        System.out.println("Salary of Programmer: " + programmer.calculateSalary());
+    }
+}
