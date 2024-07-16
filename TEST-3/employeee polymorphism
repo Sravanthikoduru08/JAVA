@@ -1,0 +1,66 @@
+abstract class Employee {
+    protected String name;
+    protected double baseSalary;
+
+    public Employee(String name, double baseSalary) {
+        this.name = name;
+        this.baseSalary = baseSalary;
+    }
+
+    public abstract double getSalary();
+
+    public double getSalary(double bonus) {
+        return getSalary() + bonus;
+    }
+}
+
+class Manager extends Employee {
+    private double bonusPercentage;
+
+    public Manager(String name, double baseSalary, double bonusPercentage) {
+        super(name, baseSalary);
+        this.bonusPercentage = bonusPercentage;
+    }
+
+    @Override
+    public double getSalary() {
+        return baseSalary + (baseSalary * bonusPercentage);
+    }
+
+    @Override
+    public double getSalary(double bonus) {
+        return getSalary() + bonus;
+    }
+}
+
+class Developer extends Employee {
+    private double projectBonus;
+
+    public Developer(String name, double baseSalary, double projectBonus) {
+        super(name, baseSalary);
+        this.projectBonus = projectBonus;
+    }
+
+    @Override
+    public double getSalary() {
+        return baseSalary + projectBonus;
+    }
+
+    @Override
+    public double getSalary(double bonus) {
+        return getSalary() + bonus;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Employee manager = new Manager("raghu", 60000, 0.5);
+        Employee developer = new Developer("karthik", 40000, 5000);
+
+        System.out.println("Manager's Salary: " + manager.getSalary());
+        System.out.println("Manager's Salary with Bonus: " + manager.getSalary(2000));
+
+        System.out.println("Developer's Salary: " + developer.getSalary());
+        System.out.println("Developer's Salary with Bonus: " + developer.getSalary(1900));
+    }
+}
