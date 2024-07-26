@@ -1,0 +1,18 @@
+class Counter {
+    private static int count = 0;
+    public void increment() {
+        count++;
+    }
+    public int getCount() {
+        return count;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Counter counter = new Counter();
+        while (counter.getCount() < 10) {
+            counter.increment();
+        }
+        System.out.println("Counter reached: " + counter.getCount());
+    }
+}
