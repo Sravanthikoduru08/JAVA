@@ -1,0 +1,16 @@
+class Employee {
+    private String name;
+    public Employee(String name) {
+        this.name = name;
+    }
+    public String getName() {
+        return name;
+    }
+}
+public class Test {
+    public static void main(String[] args) {
+        Employee e = new Employee("Deepa");
+        System.out.print("Employee Name :");
+        System.out.println(e.getName());
+    }
+}
