@@ -1,0 +1,50 @@
+class Product {
+    private String productId;
+    private String name;
+    private double price;
+
+    public Product(String productId, String name, double price) {
+        this.productId = productId;
+        this.name = name;
+        this.price = price;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+}
+
+class Electronics extends Product {
+    public Electronics(String productId, String name, double price) {
+        super(productId, name, price);
+    }
+
+    public double calculateDiscount(boolean isMember) {
+        double discount = isMember ? 0.1 : 0.05;
+        return getPrice() * (1 - discount);
+    }
+}
+
+class Clothing extends Product {
+    public Clothing(String productId, String name, double price) {
+        super(productId, name, price);
+    }
+
+    public double calculateDiscount(String season) {
+        double discount = season.equalsIgnoreCase("Winter") ? 0.2 : 0.1;
+        return getPrice() * (1 - discount);
+    }
+}
+public class Main {
+    public static void main(String[] args) {
+        // Test Electronics
+        Electronics laptop = new Electronics("E001", "Laptop", 1000);
+        double laptopPriceAfterDiscount = laptop.calculateDiscount(true);
+        System.out.println("Electronics Price after discount: $" + laptopPriceAfterDiscount);
+
+        // Test Clothing
+        Clothing shirt = new Clothing("C001", "Shirt", 50);
+        double shirtPriceAfterDiscount = shirt.calculateDiscount("Winter");
+        System.out.println("Clothing Price after discount: $" + shirtPriceAfterDiscount);
+    }
+}
