@@ -1,0 +1,68 @@
+class LibraryItem {
+    String title, author;
+    int year;
+    boolean isCheckedOut = false;
+    public LibraryItem(String title, String author, int year) {
+        this.title = title;
+        this.author = author;
+        this.year = year;
+    }
+
+    public void checkOut() {
+        System.out.println(title + (isCheckedOut ? " is already checked out." : " has been checked out."));
+        isCheckedOut = true;
+    }
+
+    public void checkIn() {
+        System.out.println(title + (isCheckedOut ? " has been checked in." : " is already checked in."));
+        isCheckedOut = false;
+    }
+
+    public void displayDetails() {
+        System.out.println("Title: " + title + "\nAuthor: " + author + "\nYear: " + year + "\nChecked Out: " + (isCheckedOut ? "Yes" : "No"));
+    }
+}
+class Book extends LibraryItem {
+    int pages;
+
+    public Book(String title, String author, int year, int pages) {
+        super(title, author, year);
+        this.pages = pages;
+    }
+
+    @Override
+    public void displayDetails() {
+        super.displayDetails();
+        System.out.println("Pages: " + pages);
+    }
+}
+class DVD extends LibraryItem {
+    int duration;
+
+    public DVD(String title, String director, int year, int duration) {
+        super(title, director, year);
+        this.duration = duration;
+    }
+
+    @Override
+    public void displayDetails() {
+        super.displayDetails();
+        System.out.println("Duration: " + duration + " minutes");
+    }
+}
+public class LibraryTest {
+    public static void main(String[] args) {
+        Book book = new Book("The Great Gatsby", "F. Scott Fitzgerald", 1925, 218);
+        DVD dvd = new DVD("Inception", "Christopher Nolan", 2010, 148);
+
+        book.displayDetails();
+        book.checkOut();
+        book.checkIn();
+
+        System.out.println();
+
+        dvd.displayDetails();
+        dvd.checkOut();
+        dvd.checkIn();
+    }
+}
