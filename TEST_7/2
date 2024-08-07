@@ -1,0 +1,99 @@
+abstract class GameCharacter {
+    protected String name;
+    protected int health;
+    protected int level;
+
+    public GameCharacter(String name, int health, int level) {
+        this.name = name;
+        this.health = health;
+        this.level = level;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getHealth() {
+        return health;
+    }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+    public void levelUp() {
+        this.level++;
+    }
+
+    public abstract void attack();
+
+    public abstract void defend();
+}
+class Warrior extends GameCharacter {
+
+    public Warrior(String name, int health, int level) {
+        super(name, health, level);
+    }
+
+    @Override
+    public void attack() {
+        System.out.println(name + " swings a sword for " + (level * 10) + " damage!");
+    }
+
+    @Override
+    public void defend() {
+        System.out.println(name + " blocks with a shield, reducing damage by " + (level * 5) + ".");
+    }
+}
+class Mage extends GameCharacter {
+
+    public Mage(String name, int health, int level) {
+        super(name, health, level);
+    }
+
+    @Override
+    public void attack() {
+        System.out.println(name + " casts a fireball for " + (level * 12) + " damage!");
+    }
+
+    @Override
+    public void defend() {
+        System.out.println(name + " conjures a magical barrier, reducing damage by " + (level * 4) + ".");
+    }
+}
+class Archer extends GameCharacter {
+
+    public Archer(String name, int health, int level) {
+        super(name, health, level);
+    }
+
+    @Override
+    public void attack() {
+        System.out.println(name + " shoots an arrow for " + (level * 8) + " damage!");
+    }
+
+    @Override
+    public void defend() {
+        System.out.println(name + " dodges the attack, reducing damage by " + (level * 3) + ".");
+    }
+}
+public class GameTest {
+    public static void main(String[] args) {
+        GameCharacter warrior = new Warrior("rohith", 120, 10);
+        GameCharacter mage = new Mage("rao", 50, 6);
+        GameCharacter archer = new Archer("deepa", 45, 9);
+
+        warrior.attack();
+        warrior.defend();
+
+        mage.attack();
+        mage.defend();
+
+        archer.attack();
+        archer.defend();
+    }
+}
