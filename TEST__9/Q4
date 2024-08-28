@@ -1,0 +1,36 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        List<Integer> set = Arrays.asList(1, 2, 3);
+        List<List<Integer>> expected = Arrays.asList(
+                Arrays.asList(),
+                Arrays.asList(1),
+                Arrays.asList(2),
+                Arrays.asList(3),
+                Arrays.asList(1, 2),
+                Arrays.asList(1, 3),
+                Arrays.asList(2, 3),
+                Arrays.asList(1, 2, 3)
+        );
+        System.out.println(generateSubsets(set).equals(expected)); // true
+    }
+
+    public static List<List<Integer>> generateSubsets(List<Integer> set) {
+        if (set.isEmpty()) {
+            List<List<Integer>> result = new ArrayList<>();
+            result.add(new ArrayList<>());
+            return result;
+        }
+        Integer first = set.get(0);
+        List<Integer> rest = set.subList(1, set.size());
+        List<List<Integer>> subsets = generateSubsets(rest);
+        List<List<Integer>> result = new ArrayList<>(subsets);
+        for (List<Integer> subset : subsets) {
+            List<Integer> newSubset = new ArrayList<>(subset);
+            newSubset.add(first);
+            result.add(newSubset);
+        }
+        return result;
+    }
+}
