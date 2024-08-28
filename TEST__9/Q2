@@ -1,0 +1,23 @@
+import java.util.ArrayList;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class Main {
+    public static void main(String[] args) {
+        String text = "Visit https://www.example.com and http://www.test.com for more information.";
+        List<String> expected = Arrays.asList("https://www.example.com", "http://www.test.com");
+        System.out.println(extractURLs(text).equals(expected)); // true
+    }
+
+    public static List<String> extractURLs(String text) {
+        List<String> urls = new ArrayList<>();
+        String urlPattern = "(https?://[^\\s]+)";
+        Pattern pattern = Pattern.compile(urlPattern);
+        Matcher matcher = pattern.matcher(text);
+        while (matcher.find()) {
+            urls.add(matcher.group());
+        }
+        return urls;
+    }
+}
