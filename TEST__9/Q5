@@ -1,0 +1,22 @@
+import java.util.*;
+
+public class Main {
+    public static void main(String[] args) {
+        Set<String> wordDict = new HashSet<>(Arrays.asList("apple", "pen", "applepen", "pine", "pineapple"));
+        System.out.println(wordBreak("pineapplepenapple", wordDict)); // true
+        System.out.println(wordBreak("catsandog", wordDict)); // false
+    }
+
+    public static boolean wordBreak(String s, Set<String> wordDict) {
+        if (s.isEmpty()) {
+            return true;
+        }
+        for (int i = 1; i <= s.length(); i++) {
+            String prefix = s.substring(0, i);
+            if (wordDict.contains(prefix) && wordBreak(s.substring(i), wordDict)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
