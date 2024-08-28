@@ -1,0 +1,32 @@
+public class Main {
+    public static void main(String[] args) {
+        System.out.println(generatePermutations("abc"));
+        System.out.println(generatePermutations("aab"));
+    }
+
+    public static void generatePermutations(String str, int start, int end, StringBuilder output) {
+        if (start == end) {
+            output.append(str).append(", ");
+        } else {
+            for (int i = start; i <= end; i++) {
+                str = swap(str, start, i);
+                generatePermutations(str, start + 1, end, output);
+                str = swap(str, start, i); // backtrack
+            }
+        }
+    }
+
+    public static String generatePermutations(String str) {
+        StringBuilder output = new StringBuilder("[");
+        generatePermutations(str, 0, str.length() - 1, output);
+        return output.toString().replaceAll(", $", "]"); // remove trailing comma
+    }
+
+    public static String swap(String str, int pos1, int pos2) {
+        char[] charArray = str.toCharArray();
+        char temp = charArray[pos1];
+        charArray[pos1] = charArray[pos2];
+        charArray[pos2] = temp;
+        return String.valueOf(charArray);
+    }
+}
